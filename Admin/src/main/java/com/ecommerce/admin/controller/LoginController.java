@@ -70,7 +70,7 @@ public class LoginController {
             }
             String username = adminDto.getUsername();
             Admin admin = adminService.findByUsername(username);
-            if(admin != null  ) {
+            if(admin != null) {
                 model.addAttribute("adminDto", adminDto);
                 model.addAttribute("emailError", "Your email has been registered!");
                 System.out.println("admin not null");
@@ -82,6 +82,7 @@ public class LoginController {
                 System.out.println("success");
                 model.addAttribute("success", "Register successfully!");
                 model.addAttribute("adminDto", adminDto);
+                return "register";
             }else {
                 model.addAttribute("adminDto", adminDto);
                 System.out.println("password not same");

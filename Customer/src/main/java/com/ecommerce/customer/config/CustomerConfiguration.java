@@ -51,6 +51,7 @@ public class CustomerConfiguration{
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/do-login")
+                .failureUrl("/login?error")
                 .defaultSuccessUrl("/index")
                 .permitAll()
                 .and()

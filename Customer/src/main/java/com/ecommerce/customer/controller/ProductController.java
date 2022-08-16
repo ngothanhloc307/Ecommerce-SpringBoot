@@ -1,6 +1,9 @@
 package com.ecommerce.customer.controller;
 
+import com.ecommerce.library.dto.CategoryDto;
+import com.ecommerce.library.model.Category;
 import com.ecommerce.library.model.Product;
+import com.ecommerce.library.service.CategoryService;
 import com.ecommerce.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,14 +18,17 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping("/products")
     public String products(Model model) {
+        List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
         List<Product> products = productService.getAllProducts();
         List<Product> listViewProducts = productService.listViewProducts();
         model.addAttribute("products", products);
         model.addAttribute("listViewProducts", listViewProducts);
+        model.addAttribute("categoryDtoList", categoryDtoList);
         return "shop";
     }
 
@@ -35,6 +41,38 @@ public class ProductController {
         return "product-detail";
     }
 
-//    @GetMapping("/product-detail")
-//    public String
+    @GetMapping("/products-in-category/{id}")
+    public String getProductsInCategory(@PathVariable("id") Long categoryId,Model model) {
+        Category category = categoryService.findById(categoryId);
+        List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
+        List<Product> productList = productService.getProductsInCategory(categoryId);
+        model.addAttribute("categoryDtoList", categoryDtoList);
+        model.addAttribute("category", category);
+        model.addAttribute("products", productList);
+        return "products-in-category";
+    }
+
+    @GetMapping("/high-price")
+    public String filterHighPriceProduct(Model model){
+        List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
+        List<Category> categories = categoryService.findAllCategoryActivated();
+        List<Product> products = productService.filterHighPriceProduct();
+        model.addAttribute("products", products);
+        model.addAttribute("categories", categories);
+        model.addAttribute("categoryDtoList", categoryDtoList);
+        return "filter-high-price";
+    }
+
+    @GetMapping("/low-price")
+    public String filterLowPriceProduct(Model model){
+        List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
+        List<Category> categories = categoryService.findAllCategoryActivated();
+        List<Product> products = productService.filterLowPriceProduct();
+        model.addAttribute("products", products);
+        model.addAttribute("categories", categories);
+        model.addAttribute("categoryDtoList", categoryDtoList);
+        return "filter-low-price";
+    }
+
+
 }
