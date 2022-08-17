@@ -25,12 +25,14 @@ public class AuthController {
     private CustomerService customerService;
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("title", "Login");
         return "login";
     }
 
     @GetMapping("/register")
     public String register(Model model) {
+        model.addAttribute("title", "Register");
         model.addAttribute("customerDto", new CustomerDto());
         return "register";
     }
@@ -39,6 +41,7 @@ public class AuthController {
     public String processRegister(@Valid @ModelAttribute("customerDto")CustomerDto customerDto,
                                   BindingResult result,
                                   Model model) {
+        model.addAttribute("title", "Register");
         try {
             if(result.hasErrors()){
                 model.addAttribute("customerDto", customerDto);

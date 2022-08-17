@@ -3,10 +3,6 @@
 <!-- Basic -->
 
 <head th:replace="fragments :: head">
-    <title>Product Detail</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
 </head>
 
 <body>
@@ -27,18 +23,7 @@
 <!-- End Top Search -->
 
     <!-- Start All Title Box -->
-    <div class="all-title-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Product Detail</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a th:href="@{/home}">Home</a></li>
-                        <li class="breadcrumb-item active"> <a>Product Detail</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="all-title-box" th:replace="fragments :: slider">
     </div>
     <!-- End All Title Box -->
 

@@ -26,6 +26,7 @@ public class ProductController {
         List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
         List<Product> products = productService.getAllProducts();
         List<Product> listViewProducts = productService.listViewProducts();
+        model.addAttribute("title", "Product Details");
         model.addAttribute("products", products);
         model.addAttribute("listViewProducts", listViewProducts);
         model.addAttribute("categoryDtoList", categoryDtoList);
@@ -46,6 +47,7 @@ public class ProductController {
         Category category = categoryService.findById(categoryId);
         List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
         List<Product> productList = productService.getProductsInCategory(categoryId);
+        model.addAttribute("title", "Product In Category");
         model.addAttribute("categoryDtoList", categoryDtoList);
         model.addAttribute("category", category);
         model.addAttribute("products", productList);
@@ -57,6 +59,7 @@ public class ProductController {
         List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
         List<Category> categories = categoryService.findAllCategoryActivated();
         List<Product> products = productService.filterHighPriceProduct();
+        model.addAttribute("title", "Product In Category");
         model.addAttribute("products", products);
         model.addAttribute("categories", categories);
         model.addAttribute("categoryDtoList", categoryDtoList);
@@ -68,6 +71,7 @@ public class ProductController {
         List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
         List<Category> categories = categoryService.findAllCategoryActivated();
         List<Product> products = productService.filterLowPriceProduct();
+        model.addAttribute("title", "Product In Category");
         model.addAttribute("products", products);
         model.addAttribute("categories", categories);
         model.addAttribute("categoryDtoList", categoryDtoList);

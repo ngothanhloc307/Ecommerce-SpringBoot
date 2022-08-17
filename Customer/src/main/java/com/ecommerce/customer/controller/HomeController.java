@@ -2,7 +2,10 @@ package com.ecommerce.customer.controller;
 
 import com.ecommerce.library.dto.ProductDto;
 import com.ecommerce.library.model.Category;
+import com.ecommerce.library.model.Customer;
+import com.ecommerce.library.model.ShoppingCart;
 import com.ecommerce.library.service.CategoryService;
+import com.ecommerce.library.service.CustomerService;
 import com.ecommerce.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,15 +25,21 @@ public class HomeController {
    private ProductService productService;
 
    @Autowired
+   private CustomerService customerService;
+   @Autowired
    private CategoryService categoryService;
 
     @RequestMapping(value = { "/index","/" }, method = RequestMethod.GET)
     public String home(Model model, Principal principal, HttpSession session){
         if(principal != null) {
             session.setAttribute("username", principal.getName());
+            Customer customer = customerService.findByUsername(principal.getName());
+            ShoppingCart cart = customer.getShoppingCart();
+            session.setAttribute("totalItems", cart.getTotalItems());
         }else{
             session.removeAttribute("username");
         }
+        model.addAttribute("title", "Home Page");
         return "home";
     }
 
@@ -38,6 +47,7 @@ public class HomeController {
     public String index(Model model){
         List<Category> categories = categoryService.findAll();
         List<ProductDto> productDtos = productService.findAll();
+        model.addAttribute("title", "Home Page");
         model.addAttribute("categories", categories);
         model.addAttribute("products", productDtos);
         return "index";
