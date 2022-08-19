@@ -1,12 +1,11 @@
 package com.ecommerce.library.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -18,12 +17,15 @@ public class OrderDetail {
     private Long id;
     private double totalPrice;
     private int quantity;
+    private double unitPrice;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
+    private Order order;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
-    private Order order;
+
 
 }

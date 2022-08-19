@@ -1,2 +1,25 @@
-
+.button-cancel{
+    background-color: #01a9ac;
+    color: #FFFF;
+    width: 100%;
+}
 /** ADD YOUR AWESOME CODES HERE **/
+
+
+input.cart {
+    background: #b0b435;
+    position: absolute;
+    bottom: 0;
+    left: 0px;
+    padding: 10px 20px;
+    font-weight: 700;
+    color: #ffffff;
+    border-style: none;
+    cursor: pointer;
+}
+
+input.cart:hover {
+    background: #000000;
+    border-style: none;
+    cursor: pointer;
+}

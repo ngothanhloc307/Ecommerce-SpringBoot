@@ -52,4 +52,10 @@ public class HomeController {
         model.addAttribute("products", productDtos);
         return "index";
     }
+
+    @GetMapping("/contact")
+    public String contact(Model model){
+        model.addAttribute("title", "Contact");
+        return "contact-us";
+    }
 }
