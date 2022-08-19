@@ -46,7 +46,6 @@ public class OrderController {
                 model.addAttribute("noItem", "No item in cart, Please add products to cart!!");
             }
             model.addAttribute("shopppingCart", shoppingCart);
-
         }
 
         return "checkout";

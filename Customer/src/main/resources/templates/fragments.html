@@ -48,9 +48,8 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="our-link">
                     <ul>
-                        <li><a href="#"> Call US : +84967631186</a></li>
-                        <li><a href="#"><i class="fas fa-location-arrow"></i> Address: Km9, Nguyen Trai, Thanh Xuan, Ha
-                            Noi</a></li>
+                        <li><a href="#"> Call US : +0123456</a></li>
+                        <li><a href="#"><i class="fas fa-location-arrow"></i> Address: Ichigo River Morioh City</a></li>
                     </ul>
                 </div>
             </div>
@@ -152,27 +151,16 @@
         <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
             <li class="cart-box">
-                <ul class="cart-list">
+                <ul class="cart-list" th:each="cartItem : ${session.shoppingCart.cartItem}">
                     <li>
-                        <a href="#" class="photo"><img th:src="@{images/Lobster 02 - Lobster rolls.jpg}" class="cart-thumb"
+                        <a href="#" class="photo"><img th:src="@{'data:image/jpeg;base64,' + ${cartItem.product.image}}" class="cart-thumb"
                                                        alt=""/></a>
-                        <h6><a href="#">Lobster rolls </a></h6>
-                        <p>1 - <span class="price">$80.00</span></p>
-                    </li>
-                    <li>
-                        <a href="#" class="photo"><img th:src="@{images/Octopus 05 - Octopus with Black Bean Pear Sauce.jpg}"
-                                                       class="cart-thumb" alt=""/></a>
-                        <h6><a href="#">Octopus with Black Bean</a></h6>
-                        <p>1 - <span class="price">$60.00</span></p>
-                    </li>
-                    <li>
-                        <a href="#" class="photo"><img th:src="@{images/Crab 02 - Crab Toast.jpg}" class="cart-thumb" alt=""/></a>
-                        <h6><a href="#">Crab Toast</a></h6>
-                        <p>1 - <span class="price">$40.00</span></p>
+                        <h6 th:text="${cartItem.product.name}"></h6>
+                        <p >[[${cartItem.quantity}]]<span class="price" th:text="'- ' + '$' + ${cartItem.totalPrice}"></span></p>
                     </li>
                     <li class="total">
                         <a th:href="@{cart}" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                        <span class="float-right"><strong>Total</strong>: $180.00</span>
+                        <span class="float-right"><strong>Total</strong>$[[${session.subTotal}]]</span>
                     </li>
                 </ul>
             </li>

@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
     /*-------Admin--------*/
     @Override
     public List<ProductDto> findAll() {
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.getAllProducts();
         List<ProductDto> productDtoList = transfer(products);
         return productDtoList;
     }

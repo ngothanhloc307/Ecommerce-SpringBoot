@@ -131,7 +131,7 @@ public class ProductController {
             e.printStackTrace();
             attributes.addFlashAttribute("failed", "Failed to delete");
         }
-        return "redirect:/products";
+        return "redirect:/products/0";
     }
 
     @GetMapping("/search-result/{pageNo}")
